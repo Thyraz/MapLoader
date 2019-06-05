@@ -12,6 +12,20 @@ For example _DefaultMap_, _Groundfloor_, or _UpperFloor_
 
 The map bundles are saved to _/mnt/data/maploader/maps/..._
 
+Messages to the _save_ topic will create or overwrite a backup of the current map to a folder with the given name.\
+Messages to the _load_ topic will copy the map backup back to the working directory of the robo.
+
+**Attention:** \
+To get a loaded map backup to be visible in the Xiaomi Home app,\
+start a full clean of the robot.\
+You can cancel the full clean after 1-2s, the map will be loaded now.\
+The robot shouldn't start to move in this short time, it just starts the vacuum motor.\
+
+**Example usage:** \
+* Restore the map after the robot damaged/lost it
+* Load different maps for different floors in your house (you might need a charging dock on each floor to get that working)
+* Reset your map to the _master map_ where all doors are open. (Helpful for room-based zone cleaning, which sometimes fails because a door was closed on the last cleaning cycle and the robot has no idea how to enter the room now.)
+
 ## Requirements
 Just a rooted device with SSH access.\
 DustCloud or Valetudo are not needed, works with devices using the original Xiaomi Cloud and App.
