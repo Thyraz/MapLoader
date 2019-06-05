@@ -14,7 +14,7 @@ client.on('message', (topic, message) => {
 	if(topic === 'rockrobo/map/load') {
 		var source = '/mnt/data/maploader/maps/' + message + '/';
 		var destination = '/mnt/data/rockrobo/';
-		
+
 		console.log("Received Load Request: " + message);
 		copyFiles(source, destination);
 	}
@@ -31,12 +31,12 @@ client.on('message', (topic, message) => {
 // Backup or restore map files
 function copyFiles(source, destination) {
 	const files = ['user_map0', 'last_map', 'PersistData_1.data', 'PersistData_2.data'];
-	
-	if (!fs.existsSync(dir)){
-		console.log('Created directory: ' + dir);
-		fs.mkdirSync(dir);
+
+	if (!fs.existsSync(destination)){
+		fs.mkdirSync(destination);
+		console.log('Created directory: ' + destination);
 	}
-	
+
 	for (i = 0; i < files.length; i++) {
 		fs.copyFileSync(source + files[i], destination + files[i]);
 		console.log('Copied ' + files[i] + ' from ' + source + ' to ' + destination);
