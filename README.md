@@ -2,28 +2,31 @@
 Map Backup/Restore for Xiaomi Vacuum and Roborock
 
 ## Description
-MapLoader is a NodeJS based service, running on the robo that listens to MQTT commands.\
+MapLoader is a NodeJS based service, running on the robot that listens to MQTT commands.\
 Available topics:
 * rockrobo/map/load
 * rockrobo/map/save
 
-The message payload is the name you want to give the map backup or the name of the backup you want to restore.
+The message payload is the name you want to give the map backup or the name of the backup you want to restore.\
 For example _DefaultMap_, _Groundfloor_, or _UpperFloor_
 
 The map bundles are saved to _/mnt/data/maploader/maps/..._
 
 Messages to the _save_ topic will create or overwrite a backup of the current map to a folder with the given name.\
-Messages to the _load_ topic will copy the map backup back to the working directory of the robo.
+Messages to the _load_ topic will copy a map backup back to the working directory of the robot.
+
+**Example usage:**
+* Restore the map after the robot damaged/lost it
+* Load different maps for different floors in your house (you might need a charging dock on each floor to get that working)
+* Reset your map to the _master map_ where all doors are open. (Helpful for room-based zone cleaning, which sometimes fails because a door was closed on the last cleaning cycle and the robot has no idea how to enter the room now.)
 
 **Attention:** \
 To get a loaded map to become visible in the Xiaomi Home app, start a full clean of the robot.\
 You can cancel the full clean after 1-2s, the map will be loaded now.\
 The robot shouldn't start to move in this short time, it just starts the vacuum motor.\
 
-**Example usage:**
-* Restore the map after the robot damaged/lost it
-* Load different maps for different floors in your house (you might need a charging dock on each floor to get that working)
-* Reset your map to the _master map_ where all doors are open. (Helpful for room-based zone cleaning, which sometimes fails because a door was closed on the last cleaning cycle and the robot has no idea how to enter the room now.)
+In combination with a smart home solution like FHEM/iobroker/HomeAssistant that already support the vacuum robots,\
+you can automate the process of restoring -> start cleaning -> cancel cleaning even further.
 
 ## Requirements
 Just a rooted device with SSH access.\
