@@ -7,7 +7,7 @@ available topics:
 * rockrobo/map/load
 * rockrobo/map/save
 
-The message payload is a name for the map you want to save or load.\
+The message payload is a name for the map you want to save or load.
 For example _DefaultMap_, _Groundfloor_, or _UpperFloor_
 
 The map bundles are saved to _/mnt/data/maploader/maps/..._
@@ -30,7 +30,7 @@ mkdir /mnt/data/node
 cd /mnt/data/node
 ```
 Get the link for the current NodeJS ARM7 binary package from here: https://nodejs.org/en/download/ \
-Download and extract (replace <version> and <distro> with the content of the file you downloaded):
+Download and extract (replace `<version>` and `<distro>` with the content of the file you downloaded):
 ```
 wget <link from above>
 sudo tar -xJvf node-<version>-<distro>.tar.xz -C /mnt/data/node/
@@ -40,7 +40,7 @@ Add the NodeJS path to the profile of the root user:
 ```
 nano ~/.profile
 ```
-Append this line at the end of the file (replace <version> and <distro> to match the path of your node installation):
+Append this line at the end of the file (replace `<version>` and `<distro>` to match the path of your node installation):
 ```
 export PATH=/mnt/data/node/node-<version>-<distro>/bin:$PATH
 ```
@@ -50,7 +50,7 @@ node -v
 ```
 Output should be the version and not a _command not found_ error
   
-**5. Install the Node MQTT module (replace <version> and <distro> to match the path of your node installation)**
+**5. Install the Node MQTT module (replace `<version>` and `<distro>` to match the path of your node installation)**
 ```
 cd /mnt/data/node/node-<version>-<distro>/lib
 npm install mqtt --save
