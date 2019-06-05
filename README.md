@@ -2,8 +2,8 @@
 Map Backup/Restore for Xiaomi Vacuum and Roborock
 
 ## Description
-MapLoader is a NodeJS based service, running on the robo that listens to MQTT commands.
-available topics:
+MapLoader is a NodeJS based service, running on the robo that listens to MQTT commands.\
+Available topics:
 * rockrobo/map/load
 * rockrobo/map/save
 
@@ -17,14 +17,14 @@ Just a rooted device with SSH access.\
 DustCloud or Valetudo are not needed, works with devices using the original Xiaomi Cloud and App.
 
 ## Installation
-**1. Root the device and log in as root per SSH**\
+**1. Root the device and log in as root per SSH**
 
 **2. Install needed packages**
 ```
 apt-get update
 apt-get install nano wget xz-utils
 ```
-**3. Install NodeJS to /mnt/data (don't use apt to install, as we don't have enough free space on the root partition)**
+**3. Install NodeJS to /mnt/data/node/ (don't use apt to install, as we don't have enough free space on the root partition)**
 ```
 mkdir /mnt/data/node
 cd /mnt/data/node
