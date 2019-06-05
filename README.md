@@ -38,18 +38,24 @@ rm node-<version>-<distro>.tar.xz
 ```
 Add the NodeJS path to the profile of the root user:
 ```
-nano ~/.profile
+nano /etc/environment
+```
+Add _/mnt/data/node/node-`<version>`-`<distro>`/bin_ to the PATH variable.\
+Example:
+```
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/data/node/node-v10.16.0-linux-armv7l/bin"
 ```
 Append this line at the end of the file (replace `<version>` and `<distro>` to match the path of your node installation):
 ```
-export PATH=/mnt/data/node/node-<version>-<distro>/bin:$PATH
+NODE_PATH="/mnt/data/node/node-<version>-<distro>/lib/node_modules"
 ```
-**4. Test your node installation**
+**4. Test your node installation**\
+Log out of SSH and login again to load the new environment variables
 ```
 node -v
 ```
 Output should be the version and not a _command not found_ error
-  
+
 **5. Install the Node MQTT module (replace `<version>` and `<distro>` to match the path of your node installation)**
 ```
 cd /mnt/data/node/node-<version>-<distro>/lib
@@ -68,16 +74,21 @@ cd /mnt/data/maploader
 node maploader.js
 ```
 When you publish MQTT messages to the topics _rockrobo/map/save_ and _rockrobo/map/load_ on your broker,
-you should see console messages about the copied files. 
+you should see console messages about the copied files.
 
-## Init.d Startup Script for Autostart
-Init.d Startupscript
-
-copy the _maploader_ file from the initscript directory to _/etc/init.d/_ on your robo. 
-Then make the file executable and start it:
-
+## Autostart
+Install the Node module _Forever_ (replace `<version>` and `<distro>` to match the path of your node installation)** \
+Forever monitors started node scripts and ensure that they are getting restarted, in case they exit in case of errors.
 ```
-chmod 755 /etc/init.d/maploader
-update-rc.d maploader defaults
-/etc/init.d/maploader start
+cd /mnt/data/node/node-<version>-<distro>/lib
+npm install forever -g
+```
+
+Autostart the node script through forever at boot time:
+```
+crontab -e
+```
+Add the following line at the end of the file (replace `<version>` and `<distro>` to match the path of your node installation):
+```
+@reboot until [ -d /mnt/data/maploader ]; do sleep 1; done; /mnt/data/node/node-<version>-<distro>/bin/forever start /mnt/data/maploader/maploader.js
 ```
