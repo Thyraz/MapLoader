@@ -79,7 +79,7 @@ npm install mqtt --save
 ```
 **6. Install MapLoader**\
 Download the content of this GIT and copy _maploader.js_ and the _maps_ subfolder to _/mnt/data/maploader/_ on the robo.\
-Edit _maploader.js_ and change the IP adress in line 3 to the IP of your robo.
+Edit _maploader.js_ and change the IP adress in line 3 to the IP of your MQTT Broker.
 ```
 nano /mnt/data/maploader/maploader.js
 ```
