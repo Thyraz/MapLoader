@@ -38,7 +38,13 @@ function copyFiles(source, destination) {
 	}
 
 	for (i = 0; i < files.length; i++) {
-		fs.copyFileSync(source + files[i], destination + files[i]);
-		console.log('Copied ' + files[i] + ' from ' + source + ' to ' + destination);
+		if (fs.existsSync(destination + files[i])){//deletes existing file in destinations to ensure only files from chosen map set are present in destination
+			fs.unlinkSync(destination + files[i]);
+			console.log('Deleted ' + files[i] + ' from ' + destination);
+		}
+		if (fs.existsSync(source + files[i])){//checks before copying to prevent errors causing remaining files to fail
+			fs.copyFileSync(source + files[i], destination + files[i]);
+			console.log('Copied ' + files[i] + ' from ' + source + ' to ' + destination);
+		}
 	}
 }
