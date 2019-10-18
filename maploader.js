@@ -38,7 +38,9 @@ function copyFiles(source, destination) {
 	}
 
 	for (i = 0; i < files.length; i++) {
-		fs.copyFileSync(source + files[i], destination + files[i]);
-		console.log('Copied ' + files[i] + ' from ' + source + ' to ' + destination);
+		if (fs.existsSync(source + files[i]) {
+			fs.copyFileSync(source + files[i], destination + files[i]);
+			console.log('Copied ' + files[i] + ' from ' + source + ' to ' + destination);
+		}
 	}
 }
