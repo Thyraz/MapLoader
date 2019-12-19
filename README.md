@@ -1,6 +1,15 @@
 # MapLoader
 Map Backup/Restore for Xiaomi Vacuum and Roborock
 
+##
+Modifications of my side:
+- added check wether file exists. If not --> skip + create error msg
+- added all necessary files for transfer; Reason: reloading map worked fine but several times docking station was rotated. Made already defined zones useless
+- added logging via mqtt
+
+
+
+
 ## Description
 MapLoader is a NodeJS based service, running on the robot that listens to MQTT commands.\
 Available topics:
