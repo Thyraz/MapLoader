@@ -2,7 +2,12 @@
 Map Backup/Restore for Xiaomi Vacuum and Roborock
 
 ##
-Modifications of my side:
+
+##
+This is a fork of Thyraz maploader! Thanks for his great work.
+
+##
+Modifications made by me:
 - added check wether file exists. If not --> skip + create error msg
 - added all necessary files for transfer; Reason: reloading map worked fine but several times docking station was rotated. Made already defined zones useless
 - added logging via mqtt
